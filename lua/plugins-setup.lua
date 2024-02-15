@@ -21,16 +21,8 @@ require("lazy").setup({
   require('plugins.lsp'),
   require('plugins.mason'),
   require('plugins.completion'),
+  require('plugins.flutter'),
 
-  {
-    'akinsho/flutter-tools.nvim',
-    ft = 'dart',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'stevearc/dressing.nvim',
-    },
-    config = true,
-  },
   require('plugins.colorscheme'),
   require('plugins.lualine'),
 

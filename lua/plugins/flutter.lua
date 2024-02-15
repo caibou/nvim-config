@@ -11,52 +11,6 @@ local preview_stack_trace = function()
 end
 
 
-local flutter = require('flutter-tools')
-flutter.setup({
-  fvm = true,
-  widget_guides = {
-    enabled = true,
-  },
-  ui = {
-    border = "rounded",
-    notification_style = 'nvim-notify'
-  },
-  decorations = {
-    statusline = {
-      app_version = false,
-      device = true,
-      project_config = false
-    }
-  },
-  dev_log = {
-    enabled = true,
-    notify_errors = false, -- if there is an error whilst running then notify the user
-    open_cmd = "split", -- command to use to open the log buffer
-  },
-  lsp = {
-    settings = {
-      enableSnippets = true,
-      showTodos = true,
-      completeFunctionCalls = true,
-      analysisExcludedFolders = {
-        vim.fn.expand '$HOME/.pub-cache',
-        vim.fn.expand '$HOME/fvm',
-      },
-      lineLength = 100,
-      renameFilesWithClass = "prompt",
-      updateImportsOnRename = true,
-      onlyAnalyzeProjectsWithOpenFiles = false,
-    },
-    color = {                                         -- show the derived colours for dart variables
-      enabled = true,                                 -- whether or not to highlight color variables at all, only supported on flutter >= 2.10
-      background = false,                             -- highlight the background
-      foreground = false,                             -- highlight the foreground
-      virtual_text = true,                            -- show the highlight using virtual text
-      virtual_text_str = "■",                       -- the virtual text character to highlight
-    },
-  },
-  root_patterns = { "pubspec.yaml" },
-})
 
 -- 检查是否安装了Telescope插件
 local telescope_installed = pcall(require, "telescope")
@@ -73,13 +27,59 @@ function run_flutter()
   vim.cmd("FlutterRun --dart-define-from-file=launch_config_dev.json")
 end
 
-
- return {
-    'akinsho/flutter-tools.nvim',
-    ft = 'dart',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'stevearc/dressing.nvim',
-    },
-    config = true,
-  }
+return {
+  'akinsho/flutter-tools.nvim',
+  ft = 'dart',
+  dependencies = {
+    'nvim-lua/plenary.nvim',
+    'stevearc/dressing.nvim',
+  },
+  config = function()
+    local flutter = require('flutter-tools')
+    flutter.setup({
+      fvm = true,
+      widget_guides = {
+        enabled = true,
+      },
+      ui = {
+        border = "rounded",
+        notification_style = 'nvim-notify'
+      },
+      decorations = {
+        statusline = {
+          app_version = false,
+          device = true,
+          project_config = false
+        }
+      },
+      dev_log = {
+        enabled = true,
+        notify_errors = false, -- if there is an error whilst running then notify the user
+        open_cmd = "split",    -- command to use to open the log buffer
+      },
+      lsp = {
+        settings = {
+          enableSnippets = true,
+          showTodos = true,
+          completeFunctionCalls = true,
+          analysisExcludedFolders = {
+            vim.fn.expand '$HOME/.pub-cache',
+            vim.fn.expand '$HOME/fvm',
+          },
+          lineLength = 100,
+          renameFilesWithClass = "prompt",
+          updateImportsOnRename = true,
+          onlyAnalyzeProjectsWithOpenFiles = false,
+        },
+        color = {                 -- show the derived colours for dart variables
+          enabled = true,         -- whether or not to highlight color variables at all, only supported on flutter >= 2.10
+          background = false,     -- highlight the background
+          foreground = false,     -- highlight the foreground
+          virtual_text = true,    -- show the highlight using virtual text
+          virtual_text_str = "■", -- the virtual text character to highlight
+        },
+      },
+      root_patterns = { "pubspec.yaml" },
+    })
+  end,
+}
