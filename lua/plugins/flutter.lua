@@ -35,6 +35,7 @@ return {
     'stevearc/dressing.nvim',
   },
   config = function()
+    local capabilities = require('cmp_nvim_lsp').default_capabilities()
     local flutter = require('flutter-tools')
     flutter.setup({
       fvm = true,
@@ -58,6 +59,7 @@ return {
         open_cmd = "split",    -- command to use to open the log buffer
       },
       lsp = {
+        capabilities = capabilities,
         settings = {
           enableSnippets = true,
           showTodos = true,
