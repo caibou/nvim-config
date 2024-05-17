@@ -22,6 +22,7 @@ require("lazy").setup({
   require('plugins.mason'),
   require('plugins.completion'),
   require('plugins.flutter'),
+  require('plugins.course'),
 
   require('plugins.colorscheme'),
   require('plugins.lualine'),
