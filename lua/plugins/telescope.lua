@@ -48,6 +48,12 @@ return {
       -- 		},
       -- 	},
       -- }),
+      defaults = {
+        layout_config = {
+          width = 0.9,
+          height = 0.9,
+        },
+      },
       extensions = {
         fzf = {
           fuzzy = true,                   -- false will only do exact matching
