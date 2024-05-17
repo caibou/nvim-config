@@ -26,6 +26,7 @@ require("lazy").setup({
 
   require('plugins.colorscheme'),
   require('plugins.lualine'),
+  require('plugins.highlight'),
 
   { 'nvim-tree/nvim-web-devicons' },
   { 'mbbill/undotree' },
