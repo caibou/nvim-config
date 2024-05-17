@@ -11,10 +11,15 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({
+local vscodePlugins = {
+  require('plugins.comment'),
+  require('plugins.dart-vim'),
+  require('plugins.course'),
+}
 
+local fullPlugins = {
   require('plugins.telescope'),
-  -- require('plugins.nvim-treesitter'),
+  require('plugins.nvim-treesitter'),
 
 
   -- LSP Support
@@ -45,4 +50,11 @@ require("lazy").setup({
 
   -- Git
   require('plugins.git'),
-})
+}
+
+
+if vim.g.vscode then
+  require("lazy").setup(vscodePlugins)
+else
+  require("lazy").setup(fullPlugins)
+end
