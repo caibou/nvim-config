@@ -20,12 +20,11 @@ return {
           vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
           vim.keymap.set('n', 'gr', telescope_builtin.lsp_references, opts)
           vim.keymap.set('n', '<leader>gr', vim.lsp.buf.references, opts)
-          vim.keymap.set('n', 'gI', telescope_builtin.implementation, opts)
+          vim.keymap.set('n', 'gI', telescope_builtin.lsp_implementations, opts)
           vim.keymap.set('n', '<leader>gI', vim.lsp.buf.implementation, opts)
 
           vim.keymap.set('n', '<leader>ds', telescope_builtin.lsp_document_symbols, { desc = '[D]ocument [S]ymbols' })
-          vim.keymap.set('n', '<leader>ws', telescope_builtin.lsp_dynamic_workspace_symbols,
-            { desc = '[W]orkspace [S]ymbols' })
+          vim.keymap.set('n', '<leader>ws', telescope_builtin.lsp_dynamic_workspace_symbols, { desc = '[W]orkspace [S]ymbols' })
 
           vim.keymap.set({ 'n', 'v' }, 'ca', vim.lsp.buf.code_action, { desc = '[C]ode [A]ction' })
           vim.keymap.set({ 'n', 'v' }, '<F3>', vim.lsp.buf.format, { desc = 'Code Format' })
